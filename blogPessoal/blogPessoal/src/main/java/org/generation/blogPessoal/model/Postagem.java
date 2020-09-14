@@ -6,11 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
@@ -35,6 +39,7 @@ public class Postagem {
 	
 	@Temporal(TemporalType.TIMESTAMP)   // INFORMA QUE VAMOS TRABALHAR COM TEMPO
 	private Date data = new java.sql.Date(System.currentTimeMillis());
+	
 
 	public long getId() {
 		return id;
@@ -68,7 +73,34 @@ public class Postagem {
 		this.data = data;
 	}
 	
+
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;                        // atributo usuario
 	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Tema tema;         
+
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
+	}
+	
+
+
 	
 
 	
