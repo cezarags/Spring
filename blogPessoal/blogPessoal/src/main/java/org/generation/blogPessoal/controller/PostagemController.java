@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController  // classe controladora
 @RequestMapping("/postagens")
-@CrossOrigin("*")    //essa classe aceita requisição de qualquer origem
+@CrossOrigin(origins = "*", allowedHeaders = "*")   //essa classe aceita requisição de qualquer origem
 public class PostagemController {
 	
 	@Autowired    // faz a injeção
